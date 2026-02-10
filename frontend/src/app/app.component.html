@@ -1,0 +1,166 @@
+<header class="site-header">
+  <div class="container header-content">
+    <div class="logo">
+      <span>KASBI MAN</span>
+      <small>Платформа профориентации</small>
+    </div>
+    <nav class="nav-links">
+      <a href="#">О проекте</a>
+      <a href="#">Направления</a>
+      <a href="#">Как это работает</a>
+      <a href="#">Пройти тест</a>
+      <a href="#">Контакты</a>
+    </nav>
+    <div class="lang-toggle">
+      <button type="button" class="lang-button" [class.is-active]="lang === 'ru'" (click)="setLang('ru')">RU</button>
+      <button type="button" class="lang-button" [class.is-active]="lang === 'tj'" (click)="setLang('tj')">TJ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="test-chat">
+    <div class="container">
+      <div class="chat-shell">
+        <section class="result-panel">
+          <div class="result-hero">
+            <div>
+              <p class="result-kicker">{{ ui.authTitle }}</p>
+              <h2 *ngIf="!user">KASBI MAN</h2>
+              <h2 *ngIf="user">{{ user.name }}</h2>
+              <p class="result-lead" *ngIf="!user">Выберите вход или регистрацию, чтобы сохранить результаты теста.</p>
+              <p class="result-lead" *ngIf="user">{{ user.email }}</p>
+            </div>
+          </div>
+
+          <div class="result-tabs">
+            <button type="button" class="result-tab" [class.is-active]="authMode === 'login'" (click)="setAuthMode('login')">{{ ui.login }}</button>
+            <button type="button" class="result-tab" [class.is-active]="authMode === 'register'" (click)="setAuthMode('register')">{{ ui.register }}</button>
+          </div>
+
+          <div class="chat-options" *ngIf="!user">
+            <input class="auth-input" *ngIf="authMode === 'register'" [(ngModel)]="authForm.name" [placeholder]="ui.name" />
+            <input class="auth-input" [(ngModel)]="authForm.email" [placeholder]="ui.email" type="email" />
+            <input class="auth-input" [(ngModel)]="authForm.password" [placeholder]="ui.password" type="password" />
+            <button type="button" class="option-button" (click)="submitAuth()">{{ ui.submit }}</button>
+            <p *ngIf="authMessage">{{ authMessage }}</p>
+          </div>
+        </section>
+
+        <div class="chat-header">
+          <div>
+            <p class="eyebrow">{{ ui.eyebrow }}</p>
+            <h1>{{ ui.title }}</h1>
+          </div>
+          <div class="chat-meta">
+            <span>{{ ui.meta }}</span>
+          </div>
+        </div>
+        <div class="chat-window" data-test-chat>
+          <div class="chat-messages" #messages>
+            <div *ngFor="let message of messages" class="message" [ngClass]="message.type">
+              {{ message.text }}
+              <span class="avatar" *ngIf="message.type !== 'user'">KM</span>
+            </div>
+          </div>
+          <div class="chat-options">
+            <button
+              type="button"
+              class="option-button"
+              *ngFor="let option of options; let idx = index"
+              [class.is-selected]="selectedOptionIndex === idx"
+              [disabled]="optionsDisabled"
+              (click)="onOptionSelect(idx)"
+            >
+              <span class="option-number">{{ idx + 1 }}</span>
+              {{ option }}
+            </button>
+          </div>
+        </div>
+        <section class="result-panel" [class.is-hidden]="!resultVisible">
+          <div class="result-tabs">
+            <button
+              type="button"
+              class="result-tab"
+              [class.is-active]="selectedTab === 'result'"
+              (click)="setTab('result')"
+            >
+              {{ ui.resultTab }}
+            </button>
+            <button
+              type="button"
+              class="result-tab"
+              [class.is-active]="selectedTab === 'path'"
+              (click)="setTab('path')"
+            >
+              {{ ui.pathTab }}
+            </button>
+            <button
+              type="button"
+              class="result-tab"
+              [class.is-active]="selectedTab === 'recommendations'"
+              (click)="setTab('recommendations')"
+            >
+              {{ ui.recommendationsTab }}
+            </button>
+          </div>
+          <div class="result-body">
+            <div class="result-content" [class.is-active]="selectedTab === 'result'">
+              <div class="result-hero">
+                <div>
+                  <p class="result-kicker">{{ ui.resultKicker }}</p>
+                  <h2>{{ ui.resultTitle }}</h2>
+                  <p class="result-lead">{{ ui.resultLead }}</p>
+                </div>
+                <div class="result-badge" *ngIf="result">
+                  <span>{{ result.profile.name }}</span>
+                  <small>{{ ui.scorePrefix }}: {{ result.percentage }}%</small>
+                </div>
+              </div>
+              <div class="result-cards" *ngIf="result">
+                <article class="result-card">
+                  <h3>Сильные стороны</h3>
+                  <ul>
+                    <li *ngFor="let strength of result.profile.strengths">{{ strength }}</li>
+                  </ul>
+                </article>
+                <article class="result-card">
+                  <h3>Подходящие направления</h3>
+                  <div class="pill-group">
+                    <span *ngFor="let field of result.profile.fields">{{ field }}</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="result-content" [class.is-active]="selectedTab === 'path'" *ngIf="result">
+              <h3>Поступление</h3>
+              <p>Подготовь базовые предметы и выбери профильные экзамены.</p>
+              <div class="pill-group">
+                <span *ngFor="let exam of result.profile.exams">{{ exam }}</span>
+              </div>
+            </div>
+            <div class="result-content" [class.is-active]="selectedTab === 'recommendations'" *ngIf="result">
+              <h3>Рекомендации</h3>
+              <ul class="result-list">
+                <li *ngFor="let reco of result.profile.recommendations">{{ reco }}</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div>
+      <strong>KASBI MAN</strong>
+      <p>Профориентация для будущего поколения Таджикистана.</p>
+    </div>
+    <div>
+      <p>Душанбе · Онлайн консультации</p>
+      <p>info@kasbi-man.tj</p>
+    </div>
+  </div>
+</footer>
