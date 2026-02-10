@@ -519,6 +519,7 @@ button.ghost,
 .chat-messages {
   display: grid;
   gap: 1rem;
+  scroll-behavior: smooth;
 }
 
 .message {
@@ -528,6 +529,9 @@ button.ghost,
   line-height: 1.5;
   position: relative;
   white-space: pre-line;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: messageIn 0.35s ease forwards;
 }
 
 .message.bot {
@@ -574,11 +578,18 @@ button.ghost,
   padding: 0.9rem 1.1rem;
   text-align: left;
   font-weight: 500;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .option-button:hover {
   border-color: #6366f1;
   background: #1f2937;
+  transform: translateY(-2px);
+}
+
+.option-button.is-selected {
+  border-color: #f59e0b;
+  background: #0f172a;
 }
 
 .option-number {
@@ -593,6 +604,13 @@ button.ghost,
   color: #111827;
   font-weight: 700;
   font-size: 0.85rem;
+}
+
+@keyframes messageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .test-chat-page .lang-toggle {

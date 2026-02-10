@@ -808,6 +808,11 @@ const createMessage = (text, type) => {
   return message;
 };
 
+const appendMessage = (container, message) => {
+  container.appendChild(message);
+  message.scrollIntoView({ behavior: "smooth", block: "end" });
+};
+
 const renderTestChat = (lang) => {
   const chat = document.querySelector("[data-test-chat]");
   if (!chat) return;
@@ -837,7 +842,11 @@ const renderTestChat = (lang) => {
       button.type = "button";
       button.className = "option-button";
       button.innerHTML = `<span class=\"option-number\">${optionIndex + 1}</span>${option}`;
-      button.addEventListener("click", () => onClick(option, optionIndex));
+      button.addEventListener("click", () => {
+        optionsEl.querySelectorAll(".option-button").forEach((item) => item.setAttribute("disabled", "true"));
+        button.classList.add("is-selected");
+        onClick(option, optionIndex);
+      });
       optionsEl.appendChild(button);
     });
   };
@@ -849,49 +858,49 @@ const renderTestChat = (lang) => {
     index += 1;
 
     if (step.type === "bot") {
-      messagesEl.appendChild(createMessage(step.text, "bot"));
+      appendMessage(messagesEl, createMessage(step.text, "bot"));
       addOptions(step.options || [], (option) => {
-        messagesEl.appendChild(createMessage(option, "user"));
-        nextStep();
+        appendMessage(messagesEl, createMessage(option, "user"));
+        setTimeout(nextStep, 350);
       });
       if (!step.options) {
-        nextStep();
+        setTimeout(nextStep, 250);
       }
       return;
     }
 
     if (step.type === "start") {
       addOptions(step.options, (option) => {
-        messagesEl.appendChild(createMessage(option, "user"));
-        nextStep();
+        appendMessage(messagesEl, createMessage(option, "user"));
+        setTimeout(nextStep, 350);
       });
       return;
     }
 
     if (step.type === "question") {
-      messagesEl.appendChild(createMessage(step.text, "bot"));
+      appendMessage(messagesEl, createMessage(step.text, "bot"));
       addOptions(step.options, (option, optionIndex) => {
         answers.push(optionIndex);
-        messagesEl.appendChild(createMessage(option, "user"));
-        nextStep();
+        appendMessage(messagesEl, createMessage(option, "user"));
+        setTimeout(nextStep, 350);
       });
       return;
     }
 
     if (step.type === "milestone") {
-      messagesEl.appendChild(createMessage(step.text, "milestone"));
-      nextStep();
+      appendMessage(messagesEl, createMessage(step.text, "milestone"));
+      setTimeout(nextStep, 400);
       return;
     }
 
     if (step.type === "final") {
-      messagesEl.appendChild(createMessage(step.text, "milestone"));
+      appendMessage(messagesEl, createMessage(step.text, "milestone"));
       const result = computeResult(answers, lang);
       renderResultPanel(result, lang);
       setupResultTabs();
       const restartLabel = translations[lang]?.result_restart || translations.ru.result_restart;
       addOptions([restartLabel], () => {
-        renderTestChat(lang);
+        setTimeout(() => renderTestChat(lang), 200);
       });
     }
   };
