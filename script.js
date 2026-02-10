@@ -60,6 +60,9 @@ const translations = {
     contact_button: "Отправить заявку",
     footer_copy: "Профориентация для будущего поколения Таджикистана.",
     footer_address: "Душанбе · Онлайн консультации",
+    test_chat_eyebrow: "Профориентационный тест",
+    test_chat_title: "Выберите ответы — и мы подберем профессию мечты",
+    test_chat_meta: "⏱ 15 минут · 16 вопросов",
     test_eyebrow: "Онлайн-диагностика",
     test_title: "Профориентационный тест KASBI MAN",
     test_description:
@@ -157,6 +160,9 @@ const translations = {
     contact_button: "Дархост фиристед",
     footer_copy: "Касбсамтгирӣ барои насли ояндаи Тоҷикистон.",
     footer_address: "Душанбе · Машваратҳои онлайн",
+    test_chat_eyebrow: "Тести касбсамтгирӣ",
+    test_chat_title: "Ҷавобҳоро интихоб кунед — мо касби орзуиро меёбем",
+    test_chat_meta: "⏱ 15 дақиқа · 16 савол",
     test_eyebrow: "Ташхиси онлайн",
     test_title: "Тести касбсамтгирии KASBI MAN",
     test_description:
@@ -195,6 +201,280 @@ const translations = {
   },
 };
 
+const testSteps = {
+  ru: [
+    {
+      type: "bot",
+      text:
+        "Читай вопросы и выбирай ответ, который нравится — печатать ничего не нужно. Начнём?",
+    },
+    { type: "start", options: ["Давай!"] },
+    {
+      type: "question",
+      text: "В будущей профессии тебе хотелось бы:",
+      options: [
+        "Работать с цифрами, а не с людьми — тебе больше нравится делать расчёты, чем много общаться",
+        "Работать с компьютером или другими гаджетами — ты и сейчас всё свободное время так проводишь",
+        "Быть руководителем и управлять командой — и чтобы тебя все слушались",
+      ],
+    },
+    {
+      type: "milestone",
+      text:
+        "Отличное\nначало!\nПродолжай отвечать на вопросы — и найдёшь профессию мечты",
+    },
+    {
+      type: "question",
+      text: "Если появится возможность изменить что-то в мире к лучшему, ты:",
+      options: [
+        "Сделаешь так, чтобы на улицах было безопасно и у всех были равные права",
+        "Найдёшь лекарства от всех болезней",
+        "Сделаешь так, чтобы всю сложную работу выполняли роботы, а люди занимались творчеством",
+      ],
+    },
+    {
+      type: "question",
+      text: "Если ты станешь директором школы, в которой сейчас учишься, ты первым делом:",
+      options: [
+        "Обновишь все компьютеры и проекторы в школе",
+        "Сделаешь так, чтобы ученики и учителя были как одна дружная команда",
+        "Запланируешь ремонт крыши и купите новое оборудование в кабинет технологии",
+      ],
+    },
+    {
+      type: "question",
+      text:
+        "Представь, что можешь побеседовать с любым человеком в мире. В таком случае ты позвонишь:",
+      options: [
+        "Илье Суцкеверу, одному из создателей нейросети ChatGPT",
+        "Каталин Карико, лауреату Нобелевской премии по медицине",
+        "Томасу Соуэллу, автору самых популярных книг по экономике",
+      ],
+    },
+    {
+      type: "milestone",
+      text:
+        "Ты станешь\nлучшим из лучших!\nПродолжай отвечать на вопросы — совсем скоро узнаешь профессию мечты",
+    },
+    {
+      type: "question",
+      text: "Тебя обрадует Нобелевская премия:",
+      options: [
+        "По биологии или медицине: за изобретение важной вакцины",
+        "По социологии: за решение проблемы голода или перенаселения",
+        "По экономике: за борьбу с финансовым кризисом",
+      ],
+    },
+    {
+      type: "question",
+      text:
+        "Представь, что в будущем тебе больше не нужно работать. В таком случае ты будешь:",
+      options: [
+        "Создавать роботов и других полезных механизмов",
+        "Заниматься благотворительностью, чтобы помогать людям",
+        "Создавать приложения и видеоигры",
+      ],
+    },
+    {
+      type: "question",
+      text: "Когда у тебя свободное время, ты любишь:",
+      options: [
+        "Читать книги по саморазвитию",
+        "Ставить научные опыты",
+        "Тренироваться, чтобы держать себя в форме",
+      ],
+    },
+    {
+      type: "question",
+      text:
+        "Представь: тебе предложили понаблюдать за работой любого специалиста. Какое занятие понравится больше всего?",
+      options: [
+        "Как учёные придумывают и ставят необычный химический эксперимент",
+        "Как программисты создают новое приложение",
+        "Как конструируют и запускают космический корабль",
+      ],
+    },
+    {
+      type: "milestone",
+      text:
+        "Половина\nпозади!\nПродолжай отвечать и узнай, в какой профессии сможешь добиться успеха",
+    },
+    {
+      type: "question",
+      text: "Каким был бы офис твоей мечты?",
+      options: [
+        "Опенспейс — чтобы было много людей, с которыми можно поболтать",
+        "Небольшой кабинет, в котором только ты и твоя работа",
+        "Любой, главное, чтобы на столе стояла самая современная техника",
+      ],
+    },
+    {
+      type: "question",
+      text: "На что ты чаще всего обращаешь внимание, когда смотришь кино?",
+      options: [
+        "На качество костюмов и достоверность спецэффектов",
+        "На сюжет и диалоги героев",
+        "На то, как информация из фильма может пригодиться в жизни",
+      ],
+    },
+    {
+      type: "question",
+      text: "Какое видео ты с удовольствием посмотришь на перемене?",
+      options: [
+        "О новых научных экспериментах",
+        "О новой видеоигре",
+        "О новых открытиях в психологии",
+      ],
+    },
+    {
+      type: "milestone",
+      text:
+        "Отличная\nидея!\nСможешь включить такое видео сразу, как пройдешь тест до конца",
+    },
+    {
+      type: "question",
+      text: "Что для тебя самое главное в жизни?",
+      options: [
+        "Иметь возможность разнообразно отдыхать",
+        "Иметь возможность воплощать свои безумные идеи",
+        "Тщательно планировать дела и придерживаться раcписания",
+      ],
+    },
+    {
+      type: "question",
+      text: "Государство должно в первую очередь заботиться:",
+      options: [
+        "О защите интересов и прав граждан",
+        "О достижениях в области науки и техники",
+        "О материальном благополучии граждан",
+      ],
+    },
+    { type: "milestone", text: "Ты почти\nу цели!\nЕщё три вопроса" },
+    {
+      type: "question",
+      text: "На какую всемирную конференцию ты хочешь попасть?",
+      options: [
+        "О трендах в безопасном шифровании данных",
+        "О помощи другим и благотворительности",
+        "О том, как запустить свой стартап",
+      ],
+    },
+    {
+      type: "question",
+      text:
+        "Представь: ты можешь оставить в школьном расписании всего один предмет. Какой ты выберешь?",
+      options: [
+        "Химию или биологию — чтобы почаще проводить эксперименты",
+        "Экономику — финансовая грамотность пригодится в будущем",
+        "Информатику — чтобы почаще сидеть за компьютером",
+      ],
+    },
+    {
+      type: "question",
+      text: "И последний вопрос: в каком классе ты учишься?",
+      options: ["9 класс", "10 класс", "11 класс"],
+    },
+    { type: "final", text: "Поздравляем,\nты прошёл тест!" },
+  ],
+};
+
+const getTestSteps = (lang) => testSteps[lang] || testSteps.ru;
+
+const createMessage = (text, type) => {
+  const message = document.createElement("div");
+  message.className = `message ${type}`;
+  message.textContent = text;
+
+  if (type === "bot" || type === "milestone" || type === "final") {
+    const avatar = document.createElement("span");
+    avatar.className = "avatar";
+    avatar.textContent = "KM";
+    message.appendChild(avatar);
+  }
+
+  return message;
+};
+
+const renderTestChat = (lang) => {
+  const chat = document.querySelector("[data-test-chat]");
+  if (!chat) return;
+
+  const messagesEl = chat.querySelector("[data-test-messages]");
+  const optionsEl = chat.querySelector("[data-test-options]");
+  const steps = getTestSteps(lang);
+  let index = 0;
+
+  messagesEl.innerHTML = "";
+  optionsEl.innerHTML = "";
+
+  const clearOptions = () => {
+    optionsEl.innerHTML = "";
+  };
+
+  const addOptions = (options, onClick) => {
+    clearOptions();
+    options.forEach((option, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "option-button";
+      button.innerHTML = `<span class=\"option-number\">${optionIndex + 1}</span>${option}`;
+      button.addEventListener("click", () => onClick(option));
+      optionsEl.appendChild(button);
+    });
+  };
+
+  const nextStep = () => {
+    clearOptions();
+    if (index >= steps.length) return;
+    const step = steps[index];
+    index += 1;
+
+    if (step.type === "bot") {
+      messagesEl.appendChild(createMessage(step.text, "bot"));
+      addOptions(step.options || [], (option) => {
+        messagesEl.appendChild(createMessage(option, "user"));
+        nextStep();
+      });
+      if (!step.options) {
+        nextStep();
+      }
+      return;
+    }
+
+    if (step.type === "start") {
+      addOptions(step.options, (option) => {
+        messagesEl.appendChild(createMessage(option, "user"));
+        nextStep();
+      });
+      return;
+    }
+
+    if (step.type === "question") {
+      messagesEl.appendChild(createMessage(step.text, "bot"));
+      addOptions(step.options, (option) => {
+        messagesEl.appendChild(createMessage(option, "user"));
+        nextStep();
+      });
+      return;
+    }
+
+    if (step.type === "milestone") {
+      messagesEl.appendChild(createMessage(step.text, "milestone"));
+      nextStep();
+      return;
+    }
+
+    if (step.type === "final") {
+      messagesEl.appendChild(createMessage(step.text, "milestone"));
+      addOptions(["Пройти ещё раз"], () => {
+        renderTestChat(lang);
+      });
+    }
+  };
+
+  nextStep();
+};
+
 const applyTranslations = (lang) => {
   document.documentElement.lang = lang === "tj" ? "tg" : "ru";
   document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -212,6 +492,8 @@ const applyTranslations = (lang) => {
       element.setAttribute("placeholder", value);
     }
   });
+
+  renderTestChat(lang);
 };
 
 const buttons = document.querySelectorAll(".lang-button");

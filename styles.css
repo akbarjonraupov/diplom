@@ -22,6 +22,11 @@ body {
   line-height: 1.6;
 }
 
+body.test-chat-page {
+  background: #050506;
+  color: #f8fafc;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -39,6 +44,21 @@ a {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   z-index: 10;
+}
+
+.test-chat-page .site-header {
+  background: rgba(5, 5, 6, 0.96);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.test-chat-page .logo small,
+.test-chat-page .nav-links a,
+.test-chat-page .header-content {
+  color: #e2e8f0;
+}
+
+.test-chat-page .nav-links a:hover {
+  color: #a5b4fc;
 }
 
 .header-content {
@@ -319,84 +339,150 @@ button.ghost,
   font-weight: 600;
 }
 
-.test-hero {
-  padding: 4.5rem 0 2rem;
-  background: linear-gradient(135deg, #eef2ff 0%, #ffffff 60%);
+.test-chat {
+  padding: 3.5rem 0 4.5rem;
 }
 
-.test-layout {
+.chat-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 2rem;
-  align-items: start;
 }
 
-.test-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
-}
-
-.test-card h2 {
-  margin-bottom: 1rem;
-}
-
-.test-meta {
+.chat-header {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 1.5rem;
+}
+
+.test-chat-page .chat-header .eyebrow {
+  color: #c7d2fe;
+}
+
+.chat-header h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-top: 0.5rem;
+}
+
+.chat-meta {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #e2e8f0;
   font-size: 0.95rem;
 }
 
-.test-steps {
+.chat-window {
+  background: #0b0b0f;
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2rem;
+  min-height: 480px;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.chat-messages {
   display: grid;
   gap: 1rem;
 }
 
-.test-step {
-  border-radius: 16px;
-  padding: 1.25rem;
-  border: 1px solid var(--line);
-  background: #fff;
+.message {
+  max-width: 620px;
+  padding: 1rem 1.4rem;
+  border-radius: 18px;
+  line-height: 1.5;
+  position: relative;
+  white-space: pre-line;
 }
 
-.test-form {
-  display: grid;
-  gap: 1rem;
+.message.bot {
+  background: #d9f99d;
+  color: #1f2937;
+  border-bottom-left-radius: 6px;
 }
 
-.test-form label {
+.message.user {
+  margin-left: auto;
+  background: #4338ca;
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.message.milestone {
+  background: #fde68a;
+  color: #1f2937;
   font-weight: 600;
 }
 
-.test-form .options {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.test-form input[type="text"],
-.test-form input[type="email"] {
-  width: 100%;
-  border: 1px solid var(--line);
+.message .avatar {
+  position: absolute;
+  left: -38px;
+  top: 6px;
+  background: #f59e0b;
+  color: #111827;
+  font-weight: 700;
   border-radius: 12px;
-  padding: 0.75rem 1rem;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.8rem;
 }
 
-.test-summary {
-  background: var(--bg);
+.chat-options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.option-button {
+  background: #111827;
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 16px;
-  padding: 1.5rem;
-  border: 1px dashed rgba(79, 70, 229, 0.3);
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  font-weight: 500;
 }
 
-@media (max-width: 900px) {
-  .test-layout {
-    grid-template-columns: 1fr;
-  }
+.option-button:hover {
+  border-color: #6366f1;
+  background: #1f2937;
+}
+
+.option-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  margin-right: 0.75rem;
+  background: #f59e0b;
+  color: #111827;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.test-chat-page .lang-toggle {
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.test-chat-page .lang-button {
+  color: #e2e8f0;
+}
+
+.test-chat-page .lang-button.is-active {
+  background: #6366f1;
+  color: #fff;
+}
+
+.test-chat-page .site-footer {
+  background: #050506;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.test-chat-page .footer-content {
+  color: #cbd5f5;
 }
 
 .site-footer {

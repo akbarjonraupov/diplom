@@ -6,7 +6,7 @@
   <title>KASBI MAN — Профориентационный тест</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="test-chat-page">
   <header class="site-header">
     <div class="container header-content">
       <div class="logo">
@@ -28,81 +28,22 @@
   </header>
 
   <main>
-    <section class="test-hero">
-      <div class="container test-layout">
-        <div class="test-card">
-          <p class="eyebrow" data-i18n="test_eyebrow">Онлайн-диагностика</p>
-          <h1 data-i18n="test_title">Профориентационный тест KASBI MAN</h1>
-          <p class="hero-description" data-i18n="test_description">
-            Ответьте на вопросы, чтобы получить персональный профиль интересов и рекомендации по
-            профессиям, которые подходят именно вам.
-          </p>
-          <div class="test-meta">
-            <span data-i18n="test_meta_1">⏱ 12 минут</span>
-            <span data-i18n="test_meta_2">📋 24 вопроса</span>
-            <span data-i18n="test_meta_3">📌 Результат сразу</span>
-          </div>
-          <div class="test-steps">
-            <div class="test-step">
-              <h3 data-i18n="test_step_1_title">Шаг 1. Личные данные</h3>
-              <p data-i18n="test_step_1_desc">Заполните имя, возраст и класс обучения.</p>
+    <section class="test-chat">
+      <div class="container">
+        <div class="chat-shell">
+          <div class="chat-header">
+            <div>
+              <p class="eyebrow" data-i18n="test_chat_eyebrow">Профориентационный тест</p>
+              <h1 data-i18n="test_chat_title">Выберите ответы — и мы подберем профессию мечты</h1>
             </div>
-            <div class="test-step">
-              <h3 data-i18n="test_step_2_title">Шаг 2. Интересы и сильные стороны</h3>
-              <p data-i18n="test_step_2_desc">Выберите утверждения, которые описывают вас.</p>
-            </div>
-            <div class="test-step">
-              <h3 data-i18n="test_step_3_title">Шаг 3. Рекомендации</h3>
-              <p data-i18n="test_step_3_desc">Получите список направлений и дальнейшие шаги.</p>
+            <div class="chat-meta">
+              <span data-i18n="test_chat_meta">⏱ 15 минут · 16 вопросов</span>
             </div>
           </div>
-        </div>
-        <div class="test-card">
-          <h2 data-i18n="test_form_title">Начните тест</h2>
-          <form class="test-form">
-            <label for="name" data-i18n="test_form_name_label">Имя</label>
-            <input id="name" type="text" name="name" placeholder="Ваше имя" data-i18n-placeholder="test_form_name_placeholder" />
-
-            <label for="email" data-i18n="test_form_email_label">Email</label>
-            <input id="email" type="email" name="email" placeholder="example@mail.com" data-i18n-placeholder="test_form_email_placeholder" />
-
-            <label data-i18n="test_form_question_1">Что вам интереснее всего?</label>
-            <div class="options">
-              <label><input type="radio" name="interest" /> <span data-i18n="test_option_1">Технологии и IT</span></label>
-              <label><input type="radio" name="interest" /> <span data-i18n="test_option_2">Медицина и биология</span></label>
-              <label><input type="radio" name="interest" /> <span data-i18n="test_option_3">Бизнес и финансы</span></label>
-              <label><input type="radio" name="interest" /> <span data-i18n="test_option_4">Креатив и гуманитарные науки</span></label>
-            </div>
-
-            <label data-i18n="test_form_question_2">Как вы предпочитаете работать?</label>
-            <div class="options">
-              <label><input type="radio" name="work" /> <span data-i18n="test_option_5">Командно и с людьми</span></label>
-              <label><input type="radio" name="work" /> <span data-i18n="test_option_6">Самостоятельно и аналитически</span></label>
-              <label><input type="radio" name="work" /> <span data-i18n="test_option_7">Через практику и эксперименты</span></label>
-            </div>
-
-            <button type="submit" class="primary" data-i18n="test_form_submit">Получить результат</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split">
-        <div>
-          <h2 data-i18n="test_support_title">Что вы получите после теста</h2>
-          <p data-i18n="test_support_desc">
-            Мы покажем подходящие профессии, образовательные программы в Таджикистане и предложим
-            консультацию с карьерным наставником.
-          </p>
-        </div>
-        <div class="test-summary">
-          <strong data-i18n="test_summary_title">Ваш персональный отчет</strong>
-          <ul>
-            <li data-i18n="test_summary_1">Профиль интересов и навыков</li>
-            <li data-i18n="test_summary_2">Список профессий и вузов</li>
-            <li data-i18n="test_summary_3">Рекомендации по следующим шагам</li>
-          </ul>
+          <div class="chat-window" data-test-chat>
+            <div class="chat-messages" data-test-messages></div>
+            <div class="chat-options" data-test-options></div>
+          </div>
         </div>
       </div>
     </section>
