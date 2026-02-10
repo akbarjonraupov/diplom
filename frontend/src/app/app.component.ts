@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 interface Step {
   type: "bot" | "start" | "question" | "milestone" | "final";
@@ -18,10 +19,17 @@ interface ScoreResponse {
   percentage: number;
 }
 
+interface AuthResponse {
+  ok: boolean;
+  message: string;
+  token?: string;
+  user?: { name: string; email: string };
+}
+
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
@@ -41,11 +49,46 @@ export class AppComponent {
   result: ScoreResponse | null = null;
   resultVisible = false;
   selectedTab: "result" | "path" | "recommendations" = "result";
+  authMode: "login" | "register" = "login";
+  authForm = {
+    name: "",
+    email: "",
+    password: "",
+  };
+  authMessage = "";
+  token = "";
+  user: { name: string; email: string } | null = null;
 
   private readonly apiBase = "http://localhost:8000";
 
   constructor() {
     this.loadSteps(this.lang);
+  }
+
+  setAuthMode(mode: "login" | "register") {
+    this.authMode = mode;
+    this.authMessage = "";
+  }
+
+  async submitAuth() {
+    const endpoint = this.authMode === "register" ? "/api/auth/register" : "/api/auth/login";
+    const payload =
+      this.authMode === "register"
+        ? this.authForm
+        : { email: this.authForm.email, password: this.authForm.password };
+
+    const response = await fetch(`${this.apiBase}${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = (await response.json()) as AuthResponse;
+    this.authMessage = data.message;
+    if (data.ok && data.token && data.user) {
+      this.token = data.token;
+      this.user = data.user;
+    }
   }
 
   setLang(lang: "ru" | "tj") {
@@ -210,6 +253,13 @@ export class AppComponent {
           "Мо профили асосии шуморо муайян кардем ва самтҳое интихоб намудем, ки истеъдодро боз мекунанд.",
         restartLabel: "Боз оғоз кардан",
         scorePrefix: "Мутобиқат",
+        authTitle: "Вуруд ё бақайдгирӣ",
+        login: "Вуруд",
+        register: "Бақайдгирӣ",
+        name: "Ном",
+        email: "Email",
+        password: "Рамз",
+        submit: "Идома",
       };
     }
     return {
@@ -225,6 +275,13 @@ export class AppComponent {
         "Мы определили твой ведущий профиль и подобрали направления, которые помогут раскрыть таланты.",
       restartLabel: "Пройти ещё раз",
       scorePrefix: "Совпадение",
+      authTitle: "Вход или регистрация",
+      login: "Вход",
+      register: "Регистрация",
+      name: "Имя",
+      email: "Email",
+      password: "Пароль",
+      submit: "Продолжить",
     };
   }
 }

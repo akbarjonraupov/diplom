@@ -22,6 +22,31 @@
   <section class="test-chat">
     <div class="container">
       <div class="chat-shell">
+        <section class="result-panel">
+          <div class="result-hero">
+            <div>
+              <p class="result-kicker">{{ ui.authTitle }}</p>
+              <h2 *ngIf="!user">KASBI MAN</h2>
+              <h2 *ngIf="user">{{ user.name }}</h2>
+              <p class="result-lead" *ngIf="!user">Выберите вход или регистрацию, чтобы сохранить результаты теста.</p>
+              <p class="result-lead" *ngIf="user">{{ user.email }}</p>
+            </div>
+          </div>
+
+          <div class="result-tabs">
+            <button type="button" class="result-tab" [class.is-active]="authMode === 'login'" (click)="setAuthMode('login')">{{ ui.login }}</button>
+            <button type="button" class="result-tab" [class.is-active]="authMode === 'register'" (click)="setAuthMode('register')">{{ ui.register }}</button>
+          </div>
+
+          <div class="chat-options" *ngIf="!user">
+            <input class="auth-input" *ngIf="authMode === 'register'" [(ngModel)]="authForm.name" [placeholder]="ui.name" />
+            <input class="auth-input" [(ngModel)]="authForm.email" [placeholder]="ui.email" type="email" />
+            <input class="auth-input" [(ngModel)]="authForm.password" [placeholder]="ui.password" type="password" />
+            <button type="button" class="option-button" (click)="submitAuth()">{{ ui.submit }}</button>
+            <p *ngIf="authMessage">{{ authMessage }}</p>
+          </div>
+        </section>
+
         <div class="chat-header">
           <div>
             <p class="eyebrow">{{ ui.eyebrow }}</p>

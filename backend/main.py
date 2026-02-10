@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Any
+import hashlib
+import secrets
 
 app = FastAPI(title="KASBI MAN API")
 
@@ -17,6 +19,20 @@ app.add_middleware(
 class ScoreRequest(BaseModel):
     answers: List[int]
     lang: str = "ru"
+
+
+class RegisterRequest(BaseModel):
+    name: str
+    email: str
+    password: str
+
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+
+users: Dict[str, Dict[str, str]] = {}
 
 
 test_steps: Dict[str, List[Dict[str, Any]]] = {
@@ -473,6 +489,47 @@ profiles = {
 async def get_test(lang: str = "ru"):
     steps = test_steps.get(lang, test_steps["ru"])
     return {"lang": lang, "steps": steps, "count": len([s for s in steps if s.get("type") == "question"])}
+
+
+@app.post("/api/auth/register")
+async def register_user(payload: RegisterRequest):
+    email = payload.email.strip().lower()
+    if email in users:
+        return {"ok": False, "message": "Пользователь уже существует"}
+
+    hashed = hashlib.sha256(payload.password.encode("utf-8")).hexdigest()
+    users[email] = {
+        "name": payload.name.strip(),
+        "email": email,
+        "password_hash": hashed,
+    }
+    token = secrets.token_hex(16)
+    return {
+        "ok": True,
+        "message": "Регистрация успешна",
+        "token": token,
+        "user": {"name": users[email]["name"], "email": email},
+    }
+
+
+@app.post("/api/auth/login")
+async def login_user(payload: LoginRequest):
+    email = payload.email.strip().lower()
+    user = users.get(email)
+    if not user:
+        return {"ok": False, "message": "Пользователь не найден"}
+
+    hashed = hashlib.sha256(payload.password.encode("utf-8")).hexdigest()
+    if hashed != user["password_hash"]:
+        return {"ok": False, "message": "Неверный пароль"}
+
+    token = secrets.token_hex(16)
+    return {
+        "ok": True,
+        "message": "Вход выполнен",
+        "token": token,
+        "user": {"name": user["name"], "email": user["email"]},
+    }
 
 
 @app.post("/api/score")
