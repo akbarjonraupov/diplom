@@ -151,10 +151,20 @@ button.primary:hover {
   background: var(--primary-dark);
 }
 
-button.ghost {
+button.ghost,
+.ghost {
   border: 1px solid var(--primary);
   color: var(--primary);
   background: transparent;
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  font-weight: 500;
 }
 
 .hero-highlights {
@@ -307,6 +317,86 @@ button.ghost {
   background: var(--primary);
   color: white;
   font-weight: 600;
+}
+
+.test-hero {
+  padding: 4.5rem 0 2rem;
+  background: linear-gradient(135deg, #eef2ff 0%, #ffffff 60%);
+}
+
+.test-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.test-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+}
+
+.test-card h2 {
+  margin-bottom: 1rem;
+}
+
+.test-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.test-steps {
+  display: grid;
+  gap: 1rem;
+}
+
+.test-step {
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.test-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.test-form label {
+  font-weight: 600;
+}
+
+.test-form .options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.test-form input[type="text"],
+.test-form input[type="email"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+}
+
+.test-summary {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px dashed rgba(79, 70, 229, 0.3);
+}
+
+@media (max-width: 900px) {
+  .test-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .site-footer {
