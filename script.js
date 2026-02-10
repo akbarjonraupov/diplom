@@ -63,6 +63,31 @@ const translations = {
     test_chat_eyebrow: "Профориентационный тест",
     test_chat_title: "Выберите ответы — и мы подберем профессию мечты",
     test_chat_meta: "⏱ 15 минут · 16 вопросов",
+    result_tab_main: "Результат",
+    result_tab_path: "Поступление",
+    result_tab_recommendations: "Рекомендации",
+    result_kicker: "Твой профиль",
+    result_title: "Как получить профессию мечты",
+    result_lead:
+      "Мы определили твой ведущий профиль и подобрали направления, которые помогут раскрыть таланты.",
+    result_profile: "Исследователь",
+    result_score: "Совпадение: 100%",
+    result_focus_title: "Сильные стороны",
+    result_strength_1: "Любознательность и стремление к открытиям",
+    result_strength_2: "Системное мышление и анализ",
+    result_strength_3: "Умение концентрироваться на задаче",
+    result_fields_title: "Подходящие направления",
+    result_path_title: "Поступление",
+    result_path_desc: "Подготовь базовые предметы и выбери профильные экзамены.",
+    result_exam_1: "Русский язык",
+    result_exam_2: "Математика",
+    result_exam_3: "Профильный предмет",
+    result_recommendations_title: "Рекомендации",
+    result_reco_1: "Составь план на 6 месяцев и выбери 2 ключевых навыка.",
+    result_reco_2: "Попробуй мини-проекты или олимпиады по профилю.",
+    result_reco_3: "Запишись на консультацию с наставником.",
+    result_score_prefix: "Совпадение",
+    result_restart: "Пройти ещё раз",
     test_eyebrow: "Онлайн-диагностика",
     test_title: "Профориентационный тест KASBI MAN",
     test_description:
@@ -163,6 +188,31 @@ const translations = {
     test_chat_eyebrow: "Тести касбсамтгирӣ",
     test_chat_title: "Ҷавобҳоро интихоб кунед — мо касби орзуиро меёбем",
     test_chat_meta: "⏱ 15 дақиқа · 16 савол",
+    result_tab_main: "Натиҷа",
+    result_tab_path: "Қабул",
+    result_tab_recommendations: "Тавсияҳо",
+    result_kicker: "Профили шумо",
+    result_title: "Чӣ тавр ба касби орзуӣ расидан",
+    result_lead:
+      "Мо профили асосии шуморо муайян кардем ва самтҳое интихоб намудем, ки истеъдодро боз мекунанд.",
+    result_profile: "Тадқиқотчӣ",
+    result_score: "Мутобиқат: 100%",
+    result_focus_title: "Қувваҳои асосӣ",
+    result_strength_1: "Кунҷковӣ ва шавқи кашфиёт",
+    result_strength_2: "Тафаккури система ва таҳлил",
+    result_strength_3: "Қобилияти тамаркуз ба вазифа",
+    result_fields_title: "Самтҳои мувофиқ",
+    result_path_title: "Қабул",
+    result_path_desc: "Фанҳои асосиро омода кунед ва имтиҳонҳои ихтисосиро интихоб намоед.",
+    result_exam_1: "Забони русӣ",
+    result_exam_2: "Математика",
+    result_exam_3: "Фани ихтисосӣ",
+    result_recommendations_title: "Тавсияҳо",
+    result_reco_1: "Нақшаи 6-моҳа тартиб диҳед ва 2 малакаи муҳимро интихоб кунед.",
+    result_reco_2: "Дар лоиҳаҳои хурд ё олимпиадаҳои соҳавӣ иштирок кунед.",
+    result_reco_3: "Ба машварати мураббӣ сабт шавед.",
+    result_score_prefix: "Мутобиқат",
+    result_restart: "Боз оғоз кардан",
     test_eyebrow: "Ташхиси онлайн",
     test_title: "Тести касбсамтгирии KASBI MAN",
     test_description:
@@ -380,6 +430,196 @@ const testSteps = {
 
 const getTestSteps = (lang) => testSteps[lang] || testSteps.ru;
 
+const resultProfilesByLang = {
+  ru: [
+    {
+      key: "tech",
+      name: "Инженер-технолог",
+      strengths: [
+        "Логика и точные расчёты",
+        "Интерес к устройству систем",
+        "Умение работать с техникой",
+      ],
+      fields: ["Информатика", "Инженерия", "Кибербезопасность"],
+      exams: ["Русский язык", "Математика", "Информатика"],
+      recommendations: [
+        "Выбери кружок по робототехнике или программированию.",
+        "Сделай 1–2 мини-проекта с гаджетами или приложениями.",
+        "Запланируй консультацию по выбору IT-направления.",
+      ],
+    },
+    {
+      key: "science",
+      name: "Исследователь",
+      strengths: [
+        "Любознательность и эксперименты",
+        "Аналитическое мышление",
+        "Устойчивость к сложным задачам",
+      ],
+      fields: ["Биология", "Химия", "Data Science"],
+      exams: ["Русский язык", "Математика", "Биология/Химия"],
+      recommendations: [
+        "Попробуй участвовать в научных проектах и олимпиадах.",
+        "Веди дневник наблюдений и экспериментов.",
+        "Выбери 1 предмет для углубленного изучения.",
+      ],
+    },
+    {
+      key: "leader",
+      name: "Лидер и организатор",
+      strengths: [
+        "Коммуникация и командная работа",
+        "Стратегическое мышление",
+        "Умение мотивировать людей",
+      ],
+      fields: ["Менеджмент", "Экономика", "Социология"],
+      exams: ["Русский язык", "Математика", "Обществознание"],
+      recommendations: [
+        "Возьми роль организатора в школьных проектах.",
+        "Изучи основы финансовой грамотности.",
+        "Запишись на тренинг по публичным выступлениям.",
+      ],
+    },
+  ],
+  tj: [
+    {
+      key: "tech",
+      name: "Муҳандис-технолог",
+      strengths: [
+        "Мантиқ ва ҳисобҳои дақиқ",
+        "Шавқ ба сохт ва системаҳо",
+        "Қобилияти кор бо техника",
+      ],
+      fields: ["Информатика", "Муҳандисӣ", "Киберамният"],
+      exams: ["Забони русӣ", "Математика", "Информатика"],
+      recommendations: [
+        "Ба маҳфили робототехника ё барномасозӣ ҳамроҳ шав.",
+        "1–2 мини-лоиҳа бо дастгоҳҳо ё барномаҳо соз.",
+        "Машварат барои интихоби IT-самт гир.",
+      ],
+    },
+    {
+      key: "science",
+      name: "Тадқиқотчӣ",
+      strengths: [
+        "Кунҷковӣ ва таҷриба",
+        "Тафаккури таҳлилӣ",
+        "Сабр барои вазифаҳои душвор",
+      ],
+      fields: ["Биология", "Химия", "Data Science"],
+      exams: ["Забони русӣ", "Математика", "Биология/Химия"],
+      recommendations: [
+        "Дар лоиҳаҳои илмӣ ва олимпиадаҳо иштирок кун.",
+        "Дафтари мушоҳида ва таҷрибаҳо нигоҳ дор.",
+        "Як фанро барои омӯзиши чуқур интихоб кун.",
+      ],
+    },
+    {
+      key: "leader",
+      name: "Роҳбар ва ташкилкунанда",
+      strengths: [
+        "Муошират ва кори гурӯҳӣ",
+        "Тафаккури стратегӣ",
+        "Қобилияти илҳомбахшӣ",
+      ],
+      fields: ["Менеҷмент", "Иқтисод", "Сотсиология"],
+      exams: ["Забони русӣ", "Математика", "Ҷомеашиносӣ"],
+      recommendations: [
+        "Дар лоиҳаҳои мактабӣ нақши ташкилкунанда гир.",
+        "Асосҳои саводнокии молиявиро омӯз.",
+        "Дар тренинги суханронии оммавӣ иштирок кун.",
+      ],
+    },
+  ],
+};
+
+const scoreMap = [
+  ["tech", "tech", "leader"],
+  ["leader", "science", "tech"],
+  ["tech", "leader", "tech"],
+  ["tech", "science", "leader"],
+  ["science", "leader", "leader"],
+  ["tech", "leader", "tech"],
+  ["leader", "science", "leader"],
+  ["science", "tech", "tech"],
+  ["leader", "tech", "tech"],
+  ["leader", "science", "leader"],
+  ["science", "tech", "science"],
+  ["leader", "tech", "tech"],
+  ["science", "tech", "leader"],
+  ["leader", "science", "leader"],
+  ["tech", "leader", "leader"],
+  ["science", "leader", "tech"],
+];
+
+const computeResult = (answers, lang) => {
+  const scores = { tech: 0, science: 0, leader: 0 };
+  answers.forEach((answerIndex, index) => {
+    const mapping = scoreMap[index];
+    if (!mapping) return;
+    const profileKey = mapping[answerIndex] || mapping[0];
+    scores[profileKey] += 1;
+  });
+
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const topKey = sorted[0]?.[0] || "science";
+  const topScore = sorted[0]?.[1] || 0;
+  const percentage = Math.round((topScore / scoreMap.length) * 100);
+  const profiles = resultProfilesByLang[lang] || resultProfilesByLang.ru;
+  const profile = profiles.find((item) => item.key === topKey) || profiles[1];
+
+  return { profile, percentage };
+};
+
+const renderResultPanel = ({ profile, percentage }, lang) => {
+  const panel = document.querySelector("[data-test-result]");
+  if (!panel) return;
+
+  panel.classList.remove("is-hidden");
+  const nameEl = panel.querySelector("[data-result-name]");
+  const scoreEl = panel.querySelector("[data-result-score]");
+  const strengthsEl = panel.querySelector("[data-result-strengths]");
+  const fieldsEl = panel.querySelector("[data-result-fields]");
+  const examsEl = panel.querySelector("[data-result-exams]");
+  const recosEl = panel.querySelector("[data-result-recommendations]");
+
+  if (nameEl) nameEl.textContent = profile.name;
+  const prefix = translations[lang]?.result_score_prefix || translations.ru.result_score_prefix;
+  if (scoreEl) scoreEl.textContent = `${prefix}: ${percentage}%`;
+
+  if (strengthsEl) {
+    strengthsEl.innerHTML = profile.strengths.map((item) => `<li>${item}</li>`).join("");
+  }
+  if (fieldsEl) {
+    fieldsEl.innerHTML = profile.fields.map((item) => `<span>${item}</span>`).join("");
+  }
+  if (examsEl) {
+    examsEl.innerHTML = profile.exams.map((item) => `<span>${item}</span>`).join("");
+  }
+  if (recosEl) {
+    recosEl.innerHTML = profile.recommendations.map((item) => `<li>${item}</li>`).join("");
+  }
+};
+
+const setupResultTabs = () => {
+  const panel = document.querySelector("[data-test-result]");
+  if (!panel) return;
+
+  const tabs = panel.querySelectorAll("[data-result-tab]");
+  const contents = panel.querySelectorAll("[data-result-content]");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((item) => item.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      const target = tab.dataset.resultTab;
+      contents.forEach((content) => {
+        content.classList.toggle("is-active", content.dataset.resultContent === target);
+      });
+    });
+  });
+};
+
 const createMessage = (text, type) => {
   const message = document.createElement("div");
   message.className = `message ${type}`;
@@ -402,10 +642,16 @@ const renderTestChat = (lang) => {
   const messagesEl = chat.querySelector("[data-test-messages]");
   const optionsEl = chat.querySelector("[data-test-options]");
   const steps = getTestSteps(lang);
+  const answers = [];
   let index = 0;
 
   messagesEl.innerHTML = "";
   optionsEl.innerHTML = "";
+
+  const resultPanel = document.querySelector("[data-test-result]");
+  if (resultPanel) {
+    resultPanel.classList.add("is-hidden");
+  }
 
   const clearOptions = () => {
     optionsEl.innerHTML = "";
@@ -418,7 +664,7 @@ const renderTestChat = (lang) => {
       button.type = "button";
       button.className = "option-button";
       button.innerHTML = `<span class=\"option-number\">${optionIndex + 1}</span>${option}`;
-      button.addEventListener("click", () => onClick(option));
+      button.addEventListener("click", () => onClick(option, optionIndex));
       optionsEl.appendChild(button);
     });
   };
@@ -451,7 +697,8 @@ const renderTestChat = (lang) => {
 
     if (step.type === "question") {
       messagesEl.appendChild(createMessage(step.text, "bot"));
-      addOptions(step.options, (option) => {
+      addOptions(step.options, (option, optionIndex) => {
+        answers.push(optionIndex);
         messagesEl.appendChild(createMessage(option, "user"));
         nextStep();
       });
@@ -466,7 +713,11 @@ const renderTestChat = (lang) => {
 
     if (step.type === "final") {
       messagesEl.appendChild(createMessage(step.text, "milestone"));
-      addOptions(["Пройти ещё раз"], () => {
+      const result = computeResult(answers, lang);
+      renderResultPanel(result, lang);
+      setupResultTabs();
+      const restartLabel = translations[lang]?.result_restart || translations.ru.result_restart;
+      addOptions([restartLabel], () => {
         renderTestChat(lang);
       });
     }

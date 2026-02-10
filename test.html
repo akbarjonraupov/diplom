@@ -44,6 +44,65 @@
             <div class="chat-messages" data-test-messages></div>
             <div class="chat-options" data-test-options></div>
           </div>
+          <section class="result-panel is-hidden" data-test-result>
+            <div class="result-tabs">
+              <button type="button" class="result-tab is-active" data-result-tab="result" data-i18n="result_tab_main">Результат</button>
+              <button type="button" class="result-tab" data-result-tab="path" data-i18n="result_tab_path">Поступление</button>
+              <button type="button" class="result-tab" data-result-tab="recommendations" data-i18n="result_tab_recommendations">Рекомендации</button>
+            </div>
+            <div class="result-body">
+              <div class="result-content is-active" data-result-content="result">
+                <div class="result-hero">
+                  <div>
+                    <p class="result-kicker" data-i18n="result_kicker">Твой профиль</p>
+                    <h2 data-i18n="result_title">Как получить профессию мечты</h2>
+                    <p class="result-lead" data-i18n="result_lead">
+                      Мы определили твой ведущий профиль и подобрали направления, которые помогут раскрыть таланты.
+                    </p>
+                  </div>
+                  <div class="result-badge">
+                    <span data-result-name data-i18n="result_profile">Исследователь</span>
+                    <small data-result-score data-i18n="result_score">Совпадение: 100%</small>
+                  </div>
+                </div>
+                <div class="result-cards">
+                  <article class="result-card">
+                    <h3 data-i18n="result_focus_title">Сильные стороны</h3>
+                    <ul data-result-strengths>
+                      <li data-i18n="result_strength_1">Любознательность и стремление к открытиям</li>
+                      <li data-i18n="result_strength_2">Системное мышление и анализ</li>
+                      <li data-i18n="result_strength_3">Умение концентрироваться на задаче</li>
+                    </ul>
+                  </article>
+                  <article class="result-card">
+                    <h3 data-i18n="result_fields_title">Подходящие направления</h3>
+                    <div class="pill-group" data-result-fields>
+                      <span>Биология</span>
+                      <span>Химия</span>
+                      <span>Data Science</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="result-content" data-result-content="path">
+                <h3 data-i18n="result_path_title">Поступление</h3>
+                <p data-i18n="result_path_desc">Подготовь базовые предметы и выбери профильные экзамены.</p>
+                <div class="pill-group" data-result-exams>
+                  <span data-i18n="result_exam_1">Русский язык</span>
+                  <span data-i18n="result_exam_2">Математика</span>
+                  <span data-i18n="result_exam_3">Профильный предмет</span>
+                </div>
+              </div>
+              <div class="result-content" data-result-content="recommendations">
+                <h3 data-i18n="result_recommendations_title">Рекомендации</h3>
+                <ul class="result-list" data-result-recommendations>
+                  <li data-i18n="result_reco_1">Составь план на 6 месяцев и выбери 2 ключевых навыка.</li>
+                  <li data-i18n="result_reco_2">Попробуй мини-проекты или олимпиады по профилю.</li>
+                  <li data-i18n="result_reco_3">Запишись на консультацию с наставником.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>
