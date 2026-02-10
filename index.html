@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KASBI MAN — Платформа профориентации</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span>KASBI MAN</span>
+        <small data-i18n="tagline">Платформа профориентации</small>
+      </div>
+      <nav class="nav-links">
+        <a href="#about" data-i18n="nav_about">О проекте</a>
+        <a href="#tracks" data-i18n="nav_tracks">Направления</a>
+        <a href="#steps" data-i18n="nav_steps">Как это работает</a>
+        <a href="test.html" data-i18n="nav_test">Пройти тест</a>
+        <a href="#contact" data-i18n="nav_contact">Контакты</a>
+      </nav>
+      <div class="lang-toggle">
+        <button type="button" class="lang-button is-active" data-lang="ru">RU</button>
+        <button type="button" class="lang-button" data-lang="tj">TJ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero_eyebrow">Профессии, которые вдохновляют</p>
+          <h1 data-i18n="hero_title">Откройте путь в будущее вместе с KASBI MAN</h1>
+          <p class="hero-description" data-i18n="hero_description">
+            Двухъязычная платформа профориентации для школьников, студентов и родителей.
+            Осознанный выбор профессии через тесты, мастер-классы и истории успеха.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" type="button" data-i18n="hero_primary">Начать консультацию</button>
+            <a class="ghost button-link" href="test.html" data-i18n="hero_secondary">Пройти профтест</a>
+          </div>
+          <div class="hero-highlights">
+            <div>
+              <h3>120+</h3>
+              <p data-i18n="hero_metric_1">Профессий в каталоге</p>
+            </div>
+            <div>
+              <h3>50+</h3>
+              <p data-i18n="hero_metric_2">Экспертов и наставников</p>
+            </div>
+            <div>
+              <h3>2</h3>
+              <p data-i18n="hero_metric_3">Языка: таджикский и русский</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h2 data-i18n="hero_card_title">Быстрый старт</h2>
+          <ul>
+            <li data-i18n="hero_card_1">Пройдите профтест за 10 минут</li>
+            <li data-i18n="hero_card_2">Получите персональный маршрут</li>
+            <li data-i18n="hero_card_3">Запишитесь на консультацию</li>
+          </ul>
+          <div class="card-footer">
+            <span data-i18n="hero_card_footer">Поддержка от карьерных консультантов</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container split">
+        <div>
+          <h2 data-i18n="about_title">О платформе</h2>
+          <p data-i18n="about_description">
+            KASBI MAN помогает подросткам и молодым специалистам ориентироваться в мире профессий,
+            учиться принимать решения и планировать карьеру. Мы объединяем тестирование, контент,
+            наставничество и локальный рынок труда в одном месте.
+          </p>
+        </div>
+        <div class="info-box">
+          <h3 data-i18n="about_box_title">Для кого мы работаем</h3>
+          <ul>
+            <li data-i18n="about_box_1">Школьники 7–11 классов</li>
+            <li data-i18n="about_box_2">Студенты и выпускники</li>
+            <li data-i18n="about_box_3">Родители и наставники</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracks" class="section alt">
+      <div class="container">
+        <h2 data-i18n="tracks_title">Популярные направления</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3 data-i18n="track_1_title">IT и цифровые технологии</h3>
+            <p data-i18n="track_1_desc">Программирование, анализ данных, кибербезопасность и дизайн.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="track_2_title">Медицина и бионауки</h3>
+            <p data-i18n="track_2_desc">Путь врача, фармацевта, лабораторного специалиста.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="track_3_title">Бизнес и финансы</h3>
+            <p data-i18n="track_3_desc">Маркетинг, предпринимательство, банковское дело.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="track_4_title">Образование и гуманитарные науки</h3>
+            <p data-i18n="track_4_desc">Педагогика, психология, журналистика, перевод.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps" class="section">
+      <div class="container">
+        <h2 data-i18n="steps_title">Как это работает</h2>
+        <div class="steps">
+          <div class="step">
+            <span>01</span>
+            <h3 data-i18n="step_1_title">Диагностика интересов</h3>
+            <p data-i18n="step_1_desc">Тесты и опросники формируют ваш профиль интересов и сильных сторон.</p>
+          </div>
+          <div class="step">
+            <span>02</span>
+            <h3 data-i18n="step_2_title">Персональная карта профессий</h3>
+            <p data-i18n="step_2_desc">Алгоритм показывает профессии, которые подходят именно вам.</p>
+          </div>
+          <div class="step">
+            <span>03</span>
+            <h3 data-i18n="step_3_title">Поддержка наставника</h3>
+            <p data-i18n="step_3_desc">Консультации, вебинары и истории выпускников.</p>
+          </div>
+          <div class="step">
+            <span>04</span>
+            <h3 data-i18n="step_4_title">План действий</h3>
+            <p data-i18n="step_4_desc">Учебные рекомендации, список курсов и цели на ближайший год.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container split">
+        <div>
+          <h2 data-i18n="focus_title">Фокус на рынке Таджикистана</h2>
+          <p data-i18n="focus_desc">
+            Мы учитываем локальные университеты, востребованные профессии, государственные программы
+            и возможности стажировок, чтобы рекомендации были актуальными.
+          </p>
+        </div>
+        <div class="stats">
+          <div>
+            <h3>24/7</h3>
+            <p data-i18n="focus_stat_1">Доступ к платформе</p>
+          </div>
+          <div>
+            <h3>10k+</h3>
+            <p data-i18n="focus_stat_2">Потенциальных пользователей</p>
+          </div>
+          <div>
+            <h3>100%</h3>
+            <p data-i18n="focus_stat_3">Поддержка двух языков</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact">
+        <div>
+          <h2 data-i18n="contact_title">Свяжитесь с нами</h2>
+          <p data-i18n="contact_desc">Оставьте заявку, чтобы получить доступ к демо и плану внедрения.</p>
+        </div>
+        <form class="contact-form">
+          <input type="text" name="name" placeholder="Имя" data-i18n-placeholder="contact_name" />
+          <input type="email" name="email" placeholder="Email" data-i18n-placeholder="contact_email" />
+          <input type="text" name="phone" placeholder="Телефон" data-i18n-placeholder="contact_phone" />
+          <textarea name="message" rows="4" placeholder="Сообщение" data-i18n-placeholder="contact_message"></textarea>
+          <button type="submit" data-i18n="contact_button">Отправить заявку</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>KASBI MAN</strong>
+        <p data-i18n="footer_copy">Профориентация для будущего поколения Таджикистана.</p>
+      </div>
+      <div>
+        <p data-i18n="footer_address">Душанбе · Онлайн консультации</p>
+        <p>info@kasbi-man.tj</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
